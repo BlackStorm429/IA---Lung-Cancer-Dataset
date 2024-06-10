@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PMML xmlns="http://www.dmg.org/PMML-4_4" xmlns:data="http://jpmml.org/jpmml-model/InlineTable" version="4.4">
+	<Header>
+		<Application name="SkLearn2PMML package" version="0.105.1"/>
+		<Timestamp>2024-06-09T20:06:39Z</Timestamp>
+	</Header>
+	<DataDictionary>
+		<DataField name="y" optype="categorical" dataType="string">
+			<Value value="NO"/>
+			<Value value="YES"/>
+		</DataField>
+		<DataField name="GENDER" optype="continuous" dataType="float"/>
+		<DataField name="AGE" optype="continuous" dataType="float"/>
+		<DataField name="SMOKING" optype="continuous" dataType="float"/>
+		<DataField name="YELLOW_FINGERS" optype="continuous" dataType="float"/>
+		<DataField name="PEER_PRESSURE" optype="continuous" dataType="float"/>
+		<DataField name="CHRONIC DISEASE" optype="continuous" dataType="float"/>
+		<DataField name="WHEEZING" optype="continuous" dataType="float"/>
+		<DataField name="ALCOHOL CONSUMING" optype="continuous" dataType="float"/>
+		<DataField name="COUGHING" optype="continuous" dataType="float"/>
+		<DataField name="SHORTNESS OF BREATH" optype="continuous" dataType="float"/>
+		<DataField name="SWALLOWING DIFFICULTY" optype="continuous" dataType="float"/>
+		<DataField name="CHEST PAIN" optype="continuous" dataType="float"/>
+	</DataDictionary>
+	<TreeModel functionName="classification" algorithmName="sklearn.tree._classes.DecisionTreeClassifier" missingValueStrategy="nullPrediction">
+		<MiningSchema>
+			<MiningField name="y" usageType="target"/>
+			<MiningField name="SWALLOWING DIFFICULTY"/>
+			<MiningField name="ALCOHOL CONSUMING"/>
+			<MiningField name="YELLOW_FINGERS"/>
+			<MiningField name="CHRONIC DISEASE"/>
+			<MiningField name="COUGHING"/>
+			<MiningField name="AGE"/>
+			<MiningField name="GENDER"/>
+			<MiningField name="SHORTNESS OF BREATH"/>
+			<MiningField name="SMOKING"/>
+			<MiningField name="CHEST PAIN"/>
+			<MiningField name="PEER_PRESSURE"/>
+			<MiningField name="WHEEZING"/>
+		</MiningSchema>
+		<Output>
+			<OutputField name="probability(NO)" optype="continuous" dataType="double" feature="probability" value="NO"/>
+			<OutputField name="probability(YES)" optype="continuous" dataType="double" feature="probability" value="YES"/>
+		</Output>
+		<LocalTransformations>
+			<DerivedField name="double(SWALLOWING DIFFICULTY)" optype="continuous" dataType="double">
+				<FieldRef field="SWALLOWING DIFFICULTY"/>
+			</DerivedField>
+			<DerivedField name="double(ALCOHOL CONSUMING)" optype="continuous" dataType="double">
+				<FieldRef field="ALCOHOL CONSUMING"/>
+			</DerivedField>
+			<DerivedField name="double(YELLOW_FINGERS)" optype="continuous" dataType="double">
+				<FieldRef field="YELLOW_FINGERS"/>
+			</DerivedField>
+			<DerivedField name="double(CHRONIC DISEASE)" optype="continuous" dataType="double">
+				<FieldRef field="CHRONIC DISEASE"/>
+			</DerivedField>
+			<DerivedField name="double(COUGHING)" optype="continuous" dataType="double">
+				<FieldRef field="COUGHING"/>
+			</DerivedField>
+			<DerivedField name="double(AGE)" optype="continuous" dataType="double">
+				<FieldRef field="AGE"/>
+			</DerivedField>
+			<DerivedField name="double(GENDER)" optype="continuous" dataType="double">
+				<FieldRef field="GENDER"/>
+			</DerivedField>
+			<DerivedField name="double(SHORTNESS OF BREATH)" optype="continuous" dataType="double">
+				<FieldRef field="SHORTNESS OF BREATH"/>
+			</DerivedField>
+			<DerivedField name="double(SMOKING)" optype="continuous" dataType="double">
+				<FieldRef field="SMOKING"/>
+			</DerivedField>
+			<DerivedField name="double(CHEST PAIN)" optype="continuous" dataType="double">
+				<FieldRef field="CHEST PAIN"/>
+			</DerivedField>
+			<DerivedField name="double(PEER_PRESSURE)" optype="continuous" dataType="double">
+				<FieldRef field="PEER_PRESSURE"/>
+			</DerivedField>
+			<DerivedField name="double(WHEEZING)" optype="continuous" dataType="double">
+				<FieldRef field="WHEEZING"/>
+			</DerivedField>
+		</LocalTransformations>
+		<Node>
+			<True/>
+			<Node>
+				<SimplePredicate field="double(SWALLOWING DIFFICULTY)" operator="lessOrEqual" value="1.5"/>
+				<Node>
+					<SimplePredicate field="double(ALCOHOL CONSUMING)" operator="lessOrEqual" value="1.5"/>
+					<Node>
+						<SimplePredicate field="double(YELLOW_FINGERS)" operator="lessOrEqual" value="1.5"/>
+						<Node>
+							<SimplePredicate field="double(CHRONIC DISEASE)" operator="lessOrEqual" value="1.5"/>
+							<Node>
+								<SimplePredicate field="double(COUGHING)" operator="lessOrEqual" value="1.5"/>
+								<Node>
+									<SimplePredicate field="double(AGE)" operator="lessOrEqual" value="56.5"/>
+									<Node score="NO" recordCount="1">
+										<SimplePredicate field="double(GENDER)" operator="lessOrEqual" value="0.5"/>
+										<ScoreDistribution value="NO" recordCount="1"/>
+										<ScoreDistribution value="YES" recordCount="0"/>
+									</Node>
+									<Node score="YES" recordCount="1">
+										<SimplePredicate field="double(SHORTNESS OF BREATH)" operator="lessOrEqual" value="1.5"/>
+										<ScoreDistribution value="NO" recordCount="0"/>
+										<ScoreDistribution value="YES" recordCount="1"/>
+									</Node>
+									<Node score="NO" recordCount="1">
+										<True/>
+										<ScoreDistribution value="NO" recordCount="1"/>
+										<ScoreDistribution value="YES" recordCount="0"/>
+									</Node>
+								</Node>
+								<Node score="NO" recordCount="1">
+									<True/>
+									<ScoreDistribution value="NO" recordCount="1"/>
+									<ScoreDistribution value="YES" recordCount="0"/>
+								</Node>
+							</Node>
+							<Node score="NO" recordCount="1">
+								<SimplePredicate field="double(AGE)" operator="lessOrEqual" value="65.0"/>
+								<ScoreDistribution value="NO" recordCount="1"/>
+								<ScoreDistribution value="YES" recordCount="0"/>
+							</Node>
+							<Node score="YES" recordCount="1">
+								<SimplePredicate field="double(AGE)" operator="lessOrEqual" value="68.0"/>
+								<ScoreDistribution value="NO" recordCount="0"/>
+								<ScoreDistribution value="YES" recordCount="1"/>
+							</Node>
+							<Node score="NO" recordCount="1">
+								<True/>
+								<ScoreDistribution value="NO" recordCount="1"/>
+								<ScoreDistribution value="YES" recordCount="0"/>
+							</Node>
+						</Node>
+						<Node>
+							<SimplePredicate field="double(AGE)" operator="lessOrEqual" value="61.5"/>
+							<Node>
+								<SimplePredicate field="double(AGE)" operator="lessOrEqual" value="59.5"/>
+								<Node score="NO" recordCount="1">
+									<SimplePredicate field="double(GENDER)" operator="lessOrEqual" value="0.5"/>
+									<ScoreDistribution value="NO" recordCount="1"/>
+									<ScoreDistribution value="YES" recordCount="0"/>
+								</Node>
+								<Node score="YES" recordCount="1">
+									<True/>
+									<ScoreDistribution value="NO" recordCount="0"/>
+									<ScoreDistribution value="YES" recordCount="1"/>
+								</Node>
+							</Node>
+							<Node>
+								<SimplePredicate field="double(SMOKING)" operator="lessOrEqual" value="1.5"/>
+								<Node score="NO" recordCount="1">
+									<SimplePredicate field="double(COUGHING)" operator="lessOrEqual" value="1.5"/>
+									<ScoreDistribution value="NO" recordCount="1"/>
+									<ScoreDistribution value="YES" recordCount="0"/>
+								</Node>
+								<Node score="YES" recordCount="1">
+									<True/>
+									<ScoreDistribution value="NO" recordCount="0"/>
+									<ScoreDistribution value="YES" recordCount="1"/>
+								</Node>
+							</Node>
+							<Node score="YES" recordCount="1">
+								<True/>
+								<ScoreDistribution value="NO" recordCount="0"/>
+								<ScoreDistribution value="YES" recordCount="1"/>
+							</Node>
+						</Node>
+						<Node score="YES" recordCount="1">
+							<SimplePredicate field="double(SHORTNESS OF BREATH)" operator="lessOrEqual" value="1.5"/>
+							<ScoreDistribution value="NO" recordCount="0"/>
+							<ScoreDistribution value="YES" recordCount="1"/>
+						</Node>
+						<Node score="NO" recordCount="1">
+							<True/>
+							<ScoreDistribution value="NO" recordCount="1"/>
+							<ScoreDistribution value="YES" recordCount="0"/>
+						</Node>
+					</Node>
+					<Node score="YES" recordCount="1">
+						<SimplePredicate field="double(AGE)" operator="lessOrEqual" value="56.5"/>
+						<ScoreDistribution value="NO" recordCount="0"/>
+						<ScoreDistribution value="YES" recordCount="1"/>
+					</Node>
+					<Node>
+						<SimplePredicate field="double(AGE)" operator="lessOrEqual" value="67.5"/>
+						<Node>
+							<SimplePredicate field="double(GENDER)" operator="lessOrEqual" value="0.5"/>
+							<Node>
+								<SimplePredicate field="double(CHEST PAIN)" operator="lessOrEqual" value="1.5"/>
+								<Node score="NO" recordCount="1">
+									<SimplePredicate field="double(PEER_PRESSURE)" operator="lessOrEqual" value="1.5"/>
+									<ScoreDistribution value="NO" recordCount="1"/>
+									<ScoreDistribution value="YES" recordCount="0"/>
+								</Node>
+								<Node>
+									<SimplePredicate field="double(COUGHING)" operator="lessOrEqual" value="1.5"/>
+									<Node score="YES" recordCount="1">
+										<SimplePredicate field="double(CHRONIC DISEASE)" operator="lessOrEqual" value="1.5"/>
+										<ScoreDistribution value="NO" recordCount="0"/>
+										<ScoreDistribution value="YES" recordCount="1"/>
+									</Node>
+									<Node score="NO" recordCount="1">
+										<True/>
+										<ScoreDistribution value="NO" recordCount="1"/>
+										<ScoreDistribution value="YES" recordCount="0"/>
+									</Node>
+								</Node>
+								<Node score="YES" recordCount="1">
+									<True/>
+									<ScoreDistribution value="NO" recordCount="0"/>
+									<ScoreDistribution value="YES" recordCount="1"/>
+								</Node>
+							</Node>
+							<Node score="NO" recordCount="1">
+								<SimplePredicate field="double(SHORTNESS OF BREATH)" operator="lessOrEqual" value="1.5"/>
+								<ScoreDistribution value="NO" recordCount="1"/>
+								<ScoreDistribution value="YES" recordCount="0"/>
+							</Node>
+							<Node score="YES" recordCount="1">
+								<True/>
+								<ScoreDistribution value="NO" recordCount="0"/>
+								<ScoreDistribution value="YES" recordCount="1"/>
+							</Node>
+						</Node>
+						<Node score="YES" recordCount="1">
+							<True/>
+							<ScoreDistribution value="NO" recordCount="0"/>
+							<ScoreDistribution value="YES" recordCount="1"/>
+						</Node>
+					</Node>
+					<Node score="YES" recordCount="1">
+						<True/>
+						<ScoreDistribution value="NO" recordCount="0"/>
+						<ScoreDistribution value="YES" recordCount="1"/>
+					</Node>
+				</Node>
+				<Node>
+					<SimplePredicate field="double(CHEST PAIN)" operator="lessOrEqual" value="1.5"/>
+					<Node>
+						<SimplePredicate field="double(AGE)" operator="lessOrEqual" value="61.5"/>
+						<Node>
+							<SimplePredicate field="double(SMOKING)" operator="lessOrEqual" value="1.5"/>
+							<Node score="YES" recordCount="1">
+								<SimplePredicate field="double(GENDER)" operator="lessOrEqual" value="0.5"/>
+								<ScoreDistribution value="NO" recordCount="0"/>
+								<ScoreDistribution value="YES" recordCount="1"/>
+							</Node>
+							<Node>
+								<SimplePredicate field="double(AGE)" operator="lessOrEqual" value="58.0"/>
+								<Node score="YES" recordCount="1">
+									<SimplePredicate field="double(SHORTNESS OF BREATH)" operator="lessOrEqual" value="1.5"/>
+									<ScoreDistribution value="NO" recordCount="0"/>
+									<ScoreDistribution value="YES" recordCount="1"/>
+								</Node>
+								<Node score="NO" recordCount="1">
+									<True/>
+									<ScoreDistribution value="NO" recordCount="1"/>
+									<ScoreDistribution value="YES" recordCount="0"/>
+								</Node>
+							</Node>
+							<Node score="NO" recordCount="1">
+								<True/>
+								<ScoreDistribution value="NO" recordCount="1"/>
+								<ScoreDistribution value="YES" recordCount="0"/>
+							</Node>
+						</Node>
+						<Node score="YES" recordCount="1">
+							<True/>
+							<ScoreDistribution value="NO" recordCount="0"/>
+							<ScoreDistribution value="YES" recordCount="1"/>
+						</Node>
+					</Node>
+					<Node score="YES" recordCount="1">
+						<True/>
+						<ScoreDistribution value="NO" recordCount="0"/>
+						<ScoreDistribution value="YES" recordCount="1"/>
+					</Node>
+				</Node>
+				<Node>
+					<SimplePredicate field="double(SHORTNESS OF BREATH)" operator="lessOrEqual" value="1.5"/>
+					<Node>
+						<SimplePredicate field="double(CHRONIC DISEASE)" operator="lessOrEqual" value="1.5"/>
+						<Node score="YES" recordCount="1">
+							<SimplePredicate field="double(WHEEZING)" operator="lessOrEqual" value="1.5"/>
+							<ScoreDistribution value="NO" recordCount="0"/>
+							<ScoreDistribution value="YES" recordCount="1"/>
+						</Node>
+						<Node score="NO" recordCount="1">
+							<SimplePredicate field="double(AGE)" operator="lessOrEqual" value="66.5"/>
+							<ScoreDistribution value="NO" recordCount="0.6666666666666666"/>
+							<ScoreDistribution value="YES" recordCount="0.3333333333333333"/>
+						</Node>
+						<Node score="NO" recordCount="1">
+							<True/>
+							<ScoreDistribution value="NO" recordCount="1"/>
+							<ScoreDistribution value="YES" recordCount="0"/>
+						</Node>
+					</Node>
+					<Node score="YES" recordCount="1">
+						<True/>
+						<ScoreDistribution value="NO" recordCount="0"/>
+						<ScoreDistribution value="YES" recordCount="1"/>
+					</Node>
+				</Node>
+				<Node score="YES" recordCount="1">
+					<True/>
+					<ScoreDistribution value="NO" recordCount="0"/>
+					<ScoreDistribution value="YES" recordCount="1"/>
+				</Node>
+			</Node>
+			<Node>
+				<SimplePredicate field="double(AGE)" operator="lessOrEqual" value="56.5"/>
+				<Node>
+					<SimplePredicate field="double(PEER_PRESSURE)" operator="lessOrEqual" value="1.5"/>
+					<Node score="NO" recordCount="1">
+						<SimplePredicate field="double(ALCOHOL CONSUMING)" operator="lessOrEqual" value="1.5"/>
+						<ScoreDistribution value="NO" recordCount="1"/>
+						<ScoreDistribution value="YES" recordCount="0"/>
+					</Node>
+					<Node score="YES" recordCount="1">
+						<True/>
+						<ScoreDistribution value="NO" recordCount="0"/>
+						<ScoreDistribution value="YES" recordCount="1"/>
+					</Node>
+				</Node>
+				<Node score="YES" recordCount="1">
+					<True/>
+					<ScoreDistribution value="NO" recordCount="0"/>
+					<ScoreDistribution value="YES" recordCount="1"/>
+				</Node>
+			</Node>
+			<Node score="YES" recordCount="1">
+				<True/>
+				<ScoreDistribution value="NO" recordCount="0"/>
+				<ScoreDistribution value="YES" recordCount="1"/>
+			</Node>
+		</Node>
+	</TreeModel>
+</PMML>
